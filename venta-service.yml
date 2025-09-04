@@ -1,0 +1,31 @@
+server:
+  port: 8083   # distinto al de carrito
+
+spring:
+  application:
+    name: venta-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/venta_db
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect  # 👈 forzamos el dialecto
+
+  cloud:
+    config:
+      enabled: false   # todavía sin Config Server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
