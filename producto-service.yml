@@ -1,12 +1,6 @@
-server:
-  port: 8081
-
 spring:
-  application:
-    name: producto-service
-
   datasource:
-    url: jdbc:mysql://localhost:3307/producto_db
+    url: jdbc:mysql://mysql-db:3306/producto_db
     username: bruno
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,14 +9,3 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
-  cloud:
-    config:
-      enabled: false   # 🚫 No usamos Config Server todavía
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    register-with-eureka: true
-    fetch-registry: true
