@@ -17,12 +17,17 @@ spring:
           uri: lb://producto-service
           predicates:
             - Path=/productos/**
+          filters:
+            - StripPrefix=0   # 👈 mantiene /productos en la URL
         - id: carrito-service
           uri: lb://carrito-service
           predicates:
             - Path=/carrito/**
+          filters:
+            - StripPrefix=0
         - id: venta-service
           uri: lb://venta-service
           predicates:
             - Path=/venta/**
-
+          filters:
+            - StripPrefix=0
