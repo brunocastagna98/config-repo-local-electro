@@ -6,28 +6,21 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
+      discovery:
+        locator:
+          enabled: false         # ✅ usamos SOLO tus rutas
+          lower-case-service-id: true
       routes:
-        - id: producto-service
+        - id: producto-route
           uri: lb://producto-service
           predicates:
             - Path=/productos/**
-          filters:
-            - StripPrefix=0   # 👈 mantiene /productos en la URL
-        - id: carrito-service
+          # StripPrefix=0 es redundante (por defecto es 0)
+        - id: carrito-route
           uri: lb://carrito-service
           predicates:
             - Path=/carrito/**
-          filters:
-            - StripPrefix=0
-        - id: venta-service
+        - id: venta-route
           uri: lb://venta-service
           predicates:
             - Path=/venta/**
-          filters:
-            - StripPrefix=0
